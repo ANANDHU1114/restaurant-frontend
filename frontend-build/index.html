@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Ordering System</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0d9488" />
+    <script type="module" crossorigin src="/assets/index-mhs5hvnd.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CofcLkqM.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Quick auto-login helper: if URL has ?token=... and optional &redirect=/path
+      // this script stores the token to localStorage so React AuthContext picks it up.
+      (function(){
+        try{
+          const params = new URLSearchParams(window.location.search);
+          const token = params.get('token');
+          const redirect = params.get('redirect');
+          if (token) {
+            localStorage.setItem('token', token);
+            // remove token param from URL for cleanliness
+            params.delete('token');
+            if (redirect) {
+              params.delete('redirect');
+              const base = window.location.origin + (window.location.pathname || '/')
+              window.location.replace(redirect.startsWith('/') ? redirect : base + redirect);
+              return;
+            } else {
+              const newq = params.toString();
+              const newUrl = window.location.pathname + (newq ? ('?'+newq) : '');
+              window.history.replaceState({}, '', newUrl);
+            }
+          }
+        }catch(e){ /* ignore */ }
+      })();
+    </script>
+  </body>
+</html>
